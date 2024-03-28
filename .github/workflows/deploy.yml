@@ -12,6 +12,9 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v2
 
+    - name: Check current directory
+      run: pwd
+
     - name: List directory
       run: ls -la
 
@@ -23,3 +26,22 @@ jobs:
     - name: Check node version
       run: |
         node --version
+
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.8'
+
+    - name: Check Python version
+      run: |
+        python --version
+
+    - name: Set up Java
+      uses: actions/setup-java@v2
+      with:
+        java-version: '11'
+
+    - name: Check Java version
+      run: |
+        java --version
+
