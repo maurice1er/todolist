@@ -36,14 +36,18 @@ jobs:
       run: |
         python --version
 
-    - name: Set up Java
-      uses: actions/setup-java@v4
-      with:
-        distribution: 'temurin'
-        java-version: '21'
-        cache: 'maven'
-
-    - name: Check Java version
+    - name: Create new file
       run: |
-        java --version
+        ls -la
+
+    # - name: Set up Java
+    #   uses: actions/setup-java@v4
+    #   with:
+    #     distribution: 'temurin'
+    #     java-version: '21'
+    #     cache: 'maven'
+
+    # - name: Check Java version
+    #   run: |
+    #     java --version
 
