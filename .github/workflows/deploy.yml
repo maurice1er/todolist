@@ -43,8 +43,12 @@ jobs:
     - name: List directory again
       run: ls -la
 
-    - name: Show env value
+    - name: Show secret value
       run: |
         echo ${{ secrets.version }}
+
+    - name: Show env value
+      run: |
+        echo ${{ env.version }}
 
 
