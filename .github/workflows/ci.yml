@@ -1,0 +1,36 @@
+name: Deploy Landing Page
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Check current directory
+      run: pwd
+
+    - name: List directory
+      run: ls -la
+
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Check current directory
+      run: pwd
+
+    - name: Show secret value
+      run: |
+        echo ${{ secrets.version }}
+
+    - name: Show env value
+      run: |
+        echo ${{ env.version }}
