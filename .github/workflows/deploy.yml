@@ -43,14 +43,8 @@ jobs:
     - name: List directory again
       run: ls -la
 
-    # - name: Set up Java
-    #   uses: actions/setup-java@v4
-    #   with:
-    #     distribution: 'temurin'
-    #     java-version: '21'
-    #     cache: 'maven'
+    - name: Show env value
+      run: |
+        echo ${{ secrets.version }}
 
-    # - name: Check Java version
-    #   run: |
-    #     java --version
 
