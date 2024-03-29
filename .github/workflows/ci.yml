@@ -12,11 +12,6 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v4
 
-    - name: Check current directory
-      run: pwd
-
-    - name: List directory
-      run: ls -la
 
   deploy:
     runs-on: ubuntu-latest
