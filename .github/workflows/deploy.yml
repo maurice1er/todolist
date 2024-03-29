@@ -1,4 +1,4 @@
-name: Deploy Landing Page
+name: CD
 
 on:
   push:
