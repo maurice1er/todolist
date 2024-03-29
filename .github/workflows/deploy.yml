@@ -12,29 +12,16 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v4
 
-    - name: Check current directory
-      run: pwd
-
-    - name: List directory
-      run: ls -la
-
-    - name: Set up Node.js
-      uses: actions/setup-node@v4
-      with:
-        node-version: '18'
-
-    - name: Check node version
+    - name: Install AWS CLI
       run: |
-        node --version
+        sudo apt-get update
+        sudo apt-get install -y python3-pip
+        sudo pip3 install awscli
 
-    - name: Set up Python
-      uses: actions/setup-python@v4
-      with:
-        python-version: '3.8'
-
-    - name: Deploy to AWS S3
+    - name: Deploy to AWS S3 tpmydeployment
       if: success()
       run: |
+        ls -la
         aws s3 sync . s3://tpmydeployment --delete --exclude ".git/*" --exclude ".github/*"
       env:
         AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
