@@ -27,7 +27,7 @@ jobs:
     - name: Check if bucket exists v2
       run: |
         aws --version
-        echo "$AWS_BUCKET_NAME"
+        echo "${{ secrets.AWS_BUCKET_NAME }}"
         echo "1------"
         echo "${{ env.AWS_BUCKET_NAME }}"
         echo "2------"
