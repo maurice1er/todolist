@@ -26,16 +26,7 @@ jobs:
 
     - name: Check if bucket exists v2
       run: |
-        aws --version
-        echo "${{ secrets.AWS_BUCKET_NAME }}"
-        echo "1------"
-        echo "${{ env.AWS_BUCKET_NAME }}"
-        echo "2------"
-        echo ${{ env.AWS_BUCKET_NAME }}
-        echo "#-"
-        echo ${{ secrets.AWS_BUCKET_NAME }}
-        echo "3------"
-        if aws s3api head-bucket --bucket ${{ secrets.AWS_BUCKET_NAME }}; then
+        if aws s3api head-bucket --bucket $AWS_BUCKET_NAME; then
           echo "Bucket exists."
         else
           echo "Bucket does not exist. Stopping the pipeline."
@@ -43,16 +34,16 @@ jobs:
         fi
       env:
         AWS_BUCKET_NAME: ${{ secrets.AWS_BUCKET_NAME }}
-        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        # AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        # AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
 
-    - name: Deploy to AWS S3 - tpmydeployment
+    - name: Deploy to AWS S3
       if: success()
       run: |
         ls -la
         aws s3 sync . s3://${{ secrets.AWS_BUCKET_NAME }} --delete --exclude ".git/*" --exclude ".github/*"
       env:
         AWS_BUCKET_NAME: ${{ secrets.AWS_BUCKET_NAME }}
-        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        # AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        # AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
 
