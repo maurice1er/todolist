@@ -28,8 +28,7 @@ jobs:
     - name: Check if bucket exists v2
       run: |
         aws --version
-        aws s3api head-bucket --bucket tpmydeployment
-        if aws s3api head-bucket --bucket tpmydeploymenttt; then
+        if aws s3api head-bucket --bucket ${{ env.AWS_BUCKET_NAME }}; then
           echo "Bucket exists."
         else
           echo "Bucket does not exist. Stopping the pipeline."
@@ -40,7 +39,7 @@ jobs:
       if: success()
       run: |
         ls -la
-        aws s3 sync . s3://tpmydeployment --delete --exclude ".git/*" --exclude ".github/*"
+        aws s3 sync . s3://${{ env.AWS_BUCKET_NAME }} --delete --exclude ".git/*" --exclude ".github/*"
       # env:
       #   AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
       #   AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
