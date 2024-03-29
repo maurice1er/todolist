@@ -32,6 +32,7 @@ jobs:
         echo "${{ env.AWS_BUCKET_NAME }}"
         echo "2------"
         echo ${{ env.AWS_BUCKET_NAME }}
+        echo "#-"
         echo ${{ secrets.AWS_BUCKET_NAME }}
         echo "3------"
         if aws s3api head-bucket --bucket $AWS_BUCKET_NAME; then
